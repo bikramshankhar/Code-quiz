@@ -1,25 +1,25 @@
-//arrray of the quiz questions, avaialble choices, and correct answers     
+//arrray of the quiz questions, avaialble choices, and correct answers
 var questions = [{
         title: "What does HTML stands for?",
-        choices: ["Hypertext markup language", 
-        "Hypertext machine language", 
-        "Hypertext and links markup language", 
+        choices: ["Hypertext markup language",
+        "Hypertext machine language",
+        "Hypertext and links markup language",
         "Hightext machine language"],
         answer: "Hypertext markup language"
     },
     {
         title: "If we want define style for an unique element, then which css selector will we use?",
         choices: ["Id",
-         "text", 
+         "text",
          "class",
           "name"],
         answer: "Id"
     },
     {
         title: "What does CSS stand for?",
-        choices: ["Computer Style Sheets", 
-        "Creative Style Sheets", 
-        "Cascading Style Sheets", 
+        choices: ["Computer Style Sheets",
+        "Creative Style Sheets",
+        "Cascading Style Sheets",
         "Colorful Style Sheets"],
         answer: "Cascading Style Sheets"
     },
@@ -35,13 +35,13 @@ var questions = [{
         title: "Which property applies a color to text?",
         choices: ["text-color",
          "foreground-color",
-          "background-color", 
+          "background-color",
           "color"],
         answer: "color"
     }
 ]
 
-//setting the numerical variables for the functions.. scores and timers.. 
+//setting the numerical variables for the functions.. scores and timers..
 var score = 0;
 var currentQuestion = -1;
 var timeLeft = 0;
@@ -59,22 +59,21 @@ function start() {
         //proceed to end the game function when timer is below 0 at any time
         if (timeLeft <= 0) {
             clearInterval(timer);
-            endGame(); 
+            endGame();
         }
     }, 1000);
 
     next();
 }
 
-//stop the timer to end the game 
+//stop the timer to end the game
 function endGame() {
     clearInterval(timer);
 
     var quizContent = `
-    <h2>Game over!</h2>
-    <h3>You got a ` + score +  ` /100!</h3>
+    <h2>Final Score ` + score +  `%</h2>
     <h3>You got ` + score / 20 +  ` questions correct!</h3>
-    <input type="text" id="name" placeholder="First name"> 
+    <input type="text" id="name" placeholder="First name">
     <button onclick="setScore()">Save score!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
@@ -91,10 +90,10 @@ function setScore() {
 function getScore() {
     var quizContent = `
     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
-    <h1>` + localStorage.getItem("highscore") + `</h1><br> 
-    
-    <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
-    
+    <h1>` + localStorage.getItem("highscore") + ` %</h1><br>
+
+    <button onclick="resetGame()">Play Again!</button>
+
     `;
 
     document.getElementById("quizBody").innerHTML = quizContent;
@@ -108,7 +107,7 @@ function clearScore() {
     resetGame();
 }
 
-//reset the game 
+//reset the game
 function resetGame() {
     clearInterval(timer);
     score = 0;
@@ -123,7 +122,7 @@ function resetGame() {
         Code Quiz!
     </h1>
     <h3>
-        Click to play!   
+        Click to play!
     </h3>
     <button onclick="start()">Start!</button>`;
 
@@ -132,7 +131,7 @@ function resetGame() {
 
 //deduct 15seconds from the timer if user chooses an incorrect answer
 function incorrect() {
-    timeLeft -= 15; 
+    timeLeft -= 15;
     next();
 }
 
@@ -142,7 +141,7 @@ function correct() {
     next();
 }
 
-//loops through the questions 
+//loops through the questions
 function next() {
     currentQuestion++;
 
@@ -154,7 +153,7 @@ function next() {
     var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
 
     for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
-        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
+        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>";
         buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
         if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
             buttonCode = buttonCode.replace("[ANS]", "correct()");
