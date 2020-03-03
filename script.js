@@ -70,13 +70,14 @@ function start() {
 function endGame() {
     clearInterval(timer);
 
-    var quizContent = `
-    <h2>Final Score ` + score +  `%</h2>
+    var quizContent = `<h2>Final Score ` + score +  `%</h2>
     <h3>You got ` + score / 20 +  ` questions correct!</h3>
     <input type="text" id="name" placeholder="First name">
     <button onclick="setScore()">Save score!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
+
+    document.getElementById("")
 }
 
 //store the scores on local storage
@@ -92,20 +93,11 @@ function getScore() {
     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
     <h1>` + localStorage.getItem("highscore") + ` %</h1><br>
 
-    <button onclick="resetGame()">Play Again!</button>
-
-    `;
+    <button onclick="resetGame()">Play Again!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
 }
 
-//clears the score name and value in the local storage if the user selects 'clear score'
-function clearScore() {
-    localStorage.setItem("highscore", "");
-    localStorage.setItem("highscoreName",  "");
-
-    resetGame();
-}
 
 //reset the game
 function resetGame() {
@@ -117,14 +109,9 @@ function resetGame() {
 
     document.getElementById("timeLeft").innerHTML = timeLeft;
 
-    var quizContent = `
-    <h1>
-        Code Quiz!
-    </h1>
-    <h3>
-        Click to play!
-    </h3>
-    <button onclick="start()">Start!</button>`;
+    var quizContent = `<h1> Code Quiz!</h1>
+    <h3> Click to play again! </h3>
+    <button onclick="start()">Start!</button>`
 
     document.getElementById("quizBody").innerHTML = quizContent;
 }
