@@ -1,42 +1,28 @@
 //arrray of the quiz questions, avaialble choices, and correct answers
+// can you see i
 var questions = [{
-        title: "What does HTML stands for?",
-        choices: ["Hypertext markup language",
-        "Hypertext machine language",
-        "Hypertext and links markup language",
-        "Hightext machine language"],
+        question: "What does HTML stands for?",
+        choices: ["Hypertext markup language", "Hypertext machine language", "Hypertext and links markup language", "Hightext machine language"],
         answer: "Hypertext markup language"
     },
     {
-        title: "If we want define style for an unique element, then which css selector will we use?",
-        choices: ["Id",
-         "text",
-         "class",
-          "name"],
+        question: "If we want define style for an unique element, then which css selector will we use?",
+        choices: ["Id", "text", "class", "name"],
         answer: "Id"
     },
     {
-        title: "What does CSS stand for?",
-        choices: ["Computer Style Sheets",
-        "Creative Style Sheets",
-        "Cascading Style Sheets",
-        "Colorful Style Sheets"],
+        question: "What does CSS stand for?",
+        choices: ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
         answer: "Cascading Style Sheets"
     },
     {
-        title: "How do you create a function in JavaScript?",
-        choices: ["function:myFunction()",
-         "function = myFunction()",
-         "function myFunction()",
-           "None of the above"],
+        question: "How do you create a function in JavaScript?",
+        choices: ["function:myFunction()", "function = myFunction()", "function myFunction()", "None of the above"],
         answer: "function myFunction()"
     },
     {
-        title: "Which property applies a color to text?",
-        choices: ["text-color",
-         "foreground-color",
-          "background-color",
-          "color"],
+        question: "Which property applies a color to text?",
+        choices: ["text-color", "foreground-color", "background-color", "color"],
         answer: "color"
     }
 ]
@@ -77,10 +63,10 @@ function endGame() {
 
     document.getElementById("quizBody").innerHTML = quizContent;
 
-    document.getElementById("")
 }
 
-//store the scores on local storage
+
+//store the scores on local storage 
 function setScore() {
     localStorage.setItem("highscore", score);
     localStorage.setItem("highscoreName",  document.getElementById('name').value);
@@ -92,7 +78,6 @@ function getScore() {
     var quizContent = `
     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
     <h1>` + localStorage.getItem("highscore") + ` %</h1><br>
-
     <button onclick="resetGame()">Play Again!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
@@ -116,6 +101,7 @@ function resetGame() {
     document.getElementById("quizBody").innerHTML = quizContent;
 }
 
+
 //deduct 15seconds from the timer if user chooses an incorrect answer
 function incorrect() {
     timeLeft -= 15;
@@ -137,20 +123,17 @@ function next() {
         return;
     }
 
-    var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+    var quizContent = "<h2>" + questions[currentQuestion].question + "</h2>"
 
     for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
         var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>";
         buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
         if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
             buttonCode = buttonCode.replace("[ANS]", "correct()");
-
         } else {
             buttonCode = buttonCode.replace("[ANS]", "incorrect()");
         }
         quizContent += buttonCode
-    }
+    } 
 
-
-    document.getElementById("quizBody").innerHTML = quizContent;
 }
