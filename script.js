@@ -1,5 +1,4 @@
-//arrray of the quiz questions, avaialble choices, and correct answers
-// can you see i
+//arrray of the quiz questions, choices, and correct answers
 var questions = [{
         question: "What does HTML stands for?",
         choices: ["Hypertext markup language", "Hypertext machine language", "Hypertext and links markup language", "Hightext machine language"],
@@ -65,14 +64,12 @@ function endGame() {
 
 }
 
-
 //store the scores on local storage 
 function setScore() {
     localStorage.setItem("highscore", score);
     localStorage.setItem("highscoreName",  document.getElementById('name').value);
     getScore();
 }
-
 
 function getScore() {
     var quizContent = `
@@ -82,7 +79,6 @@ function getScore() {
 
     document.getElementById("quizBody").innerHTML = quizContent;
 }
-
 
 //reset the game
 function resetGame() {
@@ -101,13 +97,11 @@ function resetGame() {
     document.getElementById("quizBody").innerHTML = quizContent;
 }
 
-
 //deduct 15seconds from the timer if user chooses an incorrect answer
 function incorrect() {
     timeLeft -= 15;
     next();
 }
-
 //increases the score by 20points if the user chooses the correct answer
 function correct() {
     score += 20;
