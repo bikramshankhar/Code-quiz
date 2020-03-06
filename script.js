@@ -60,7 +60,7 @@ function endGame() {
 
     var quizContent = `<h2>Final Score ` + score +  `%</h2>
     <h3>You got ` + score / 20 +  ` questions correct!</h3>
-    <input type="text" id="name" placeholder="First name">
+    <input type="text" id="name" placeholder="Enter initials">
     <button onclick="setScore()">Save score!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
@@ -109,16 +109,13 @@ function resetGame() {
 function incorrect() {
     timeLeft -= 15;
     next();
-    let text = $("<div>").text("Incorrect");
-    $('.alret-text').append(text);
 }
 
 //increases the score by 20points if the user chooses the correct answer
 function correct() {
     score += 20;
     next();
-    let text = $("<div>").text("Correct");
-    $('.alret-text').append(text);
+   
 }
 
 //loops through the questions
@@ -145,7 +142,5 @@ function next() {
 
 
     document.getElementById("quizBody").innerHTML = quizContent;
-    $('.alret-text').text("");  
-
 }
 
