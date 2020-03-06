@@ -1,4 +1,5 @@
-//arrray of the quiz questions, choices, and correct answers
+//arrray of the quiz questions,  choices, and correct answers
+
 var questions = [{
         question: "What does HTML stands for?",
         choices: ["Hypertext markup language", "Hypertext machine language", "Hypertext and links markup language", "Hightext machine language"],
@@ -48,6 +49,8 @@ function start() {
         }
     }, 1000);
 
+    
+
     next();
 }
 
@@ -64,6 +67,7 @@ function endGame() {
 
 }
 
+
 //store the scores on local storage 
 function setScore() {
     localStorage.setItem("highscore", score);
@@ -71,14 +75,17 @@ function setScore() {
     getScore();
 }
 
+
 function getScore() {
     var quizContent = `
     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
     <h1>` + localStorage.getItem("highscore") + ` %</h1><br>
+
     <button onclick="resetGame()">Play Again!</button>`;
 
     document.getElementById("quizBody").innerHTML = quizContent;
 }
+
 
 //reset the game
 function resetGame() {
@@ -97,15 +104,21 @@ function resetGame() {
     document.getElementById("quizBody").innerHTML = quizContent;
 }
 
+
 //deduct 15seconds from the timer if user chooses an incorrect answer
 function incorrect() {
     timeLeft -= 15;
     next();
+    let text = $("<div>").text("Incorrect");
+    $('.alret-text').append(text);
 }
+
 //increases the score by 20points if the user chooses the correct answer
 function correct() {
     score += 20;
     next();
+    let text = $("<div>").text("Correct");
+    $('.alret-text').append(text);
 }
 
 //loops through the questions
@@ -128,6 +141,11 @@ function next() {
             buttonCode = buttonCode.replace("[ANS]", "incorrect()");
         }
         quizContent += buttonCode
-    } 
+    }
+
+
+    document.getElementById("quizBody").innerHTML = quizContent;
+    $('.alret-text').text("");  
 
 }
+
